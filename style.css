@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  background-color: #fff;
+  color: rgb(65, 65, 65);
+  font-family: "Lato", "Arial", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+input[type="submit"],
+button {
+  display: inline-block;
+  padding: 7px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+button {
+  margin-top: 30px;
+}
+.btn {
+  padding: 7px 15px;
+  margin-left: 12px;
+}
+input[type="text"] {
+  width: 30%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+header {
+  background-color: rgb(43, 104, 110);
+  padding: 40px;
+  text-align: center;
+  font-size: 120%;
+  color: #fff;
+}
+
+.search-box {
+  padding: 40px;
+  text-align: center;
+}
+.container {
+  /* border: 1px solid rgba(0, 0, 0, 0.11); */
+  padding: 20px 150px;
+  width: 100%;
+}
+
+table,
+td,
+th {
+  border: 2px solid #ddd;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td {
+  font-size: 15px;
+  font-weight: 400;
+}
+th,
+td {
+  padding: 15px;
+}
+.pagination {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.pagination ul {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 8px;
+  border-radius: 50px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.pagination ul li {
+  color: rgb(43, 104, 110);
+  list-style: none;
+  line-height: 35px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+.pagination ul li.numb {
+  list-style: none;
+  height: 35px;
+  width: 35px;
+  margin: 0 3px;
+  line-height: 35px;
+  border-radius: 50%;
+}
+.pagination ul li.numb.first {
+  margin: 0px 3px 0 -5px;
+}
+.pagination ul li.numb.last {
+  margin: 0px -5px 0 3px;
+}
+.pagination ul li.button {
+  padding: 0 20px;
+  border-radius: 50px;
+}
+.pagination ul li.dots {
+  font-size: 22px;
+  cursor: default;
+}
+input[type="submit"]:hover,
+button:hover {
+  border: 2px solid rgb(43, 104, 110);
+}
+input[type="submit"]:hover,
+button:hover,
+.pagination li.active,
+.pagination ul li.numb:hover,
+.pagination ul li:first-child:hover,
+.pagination ul li:last-child:hover {
+  color: #fff;
+  background: rgb(43, 104, 110);
+}
+.pagination ul li.prev {
+  border-radius: 25px 5px 5px 25px;
+}
+.pagination ul li.next {
+  border-radius: 5px 25px 25px 5px;
+}
