@@ -143,3 +143,12 @@ button:hover,
 .pagination ul li.next {
   border-radius: 5px 25px 25px 5px;
 }
+
+.sort {
+  opacity: 20%;
+}
+
+.sort:hover,
+.sort:active {
+  opacity: 90%;
+}

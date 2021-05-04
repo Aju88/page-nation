@@ -2,11 +2,11 @@
 
 /*---------------------fetching data from json file----------------------- */
 let myRequest = new Request("./data_class.json");
-let array = [];
+let tablearray = [];
 const clientData = fetch(myRequest)
   .then((response) => response.json())
   .then((users) => {
-    array = users;
+    tablearray = users;
     pageCalc(users);
   });
 
@@ -23,6 +23,9 @@ function buildTable(data) {
       temp += "<td>" + u.last_name + "</td></tr>";
     });
     document.getElementById("tboy").innerHTML = temp;
+  } else {
+    document.getElementById("tboy").style.display = "none";
+    alert("No data available...!");
   }
 }
 
@@ -35,7 +38,6 @@ function pageCalc(queryset) {
     window: 5,
   };
   var totalPages = Math.round(queryset.length / state.rows);
-  console.log();
   pagination(totalPages, state.page, queryset, state);
 }
 
@@ -52,7 +54,8 @@ function pagination(pages, page) {
   let afterPages = page + 1;
   var rowStart = (page - 1) * rows;
   var rowEnd = rowStart + rows;
-  var trimmedData = array.slice(rowStart, rowEnd);
+
+  var trimmedData = tablearray.slice(rowStart, rowEnd);
   buildTable(trimmedData);
   //-------------------adding previous button------------------------//
   if (page > 1) {
@@ -117,7 +120,7 @@ function pagination(pages, page) {
 
 //------------------------------function for sorting table-----------------------------------------//
 
-function sortTable() {
+function sortTable(n) {
   var rows, switching, i, x, y, shouldSwitch;
   var table = document.getElementById("tboy");
   switching = true;
@@ -128,8 +131,8 @@ function sortTable() {
     for (i = 0; i < rows.length - 1; i++) {
       shouldSwitch = false;
 
-      x = rows[i].getElementsByTagName("TD")[1];
-      y = rows[i + 1].getElementsByTagName("TD")[1];
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
       if (x.innerHTML > y.innerHTML) {
         shouldSwitch = true;
         break;
@@ -143,60 +146,45 @@ function sortTable() {
 }
 
 /*-------------------funtion for searching through the table-------------------- */
-/* 
-function searchTable() {
-  var input, filter,table;
-  input = document.getElementById("user-id");
-  filter = input.value.toUpperCase();
-  table = array;
-  console.log(table);
-} */
 
 function searchTable() {
   var input,
     filter,
+    // rows,
     table,
-    rows,
+    pageCount,
     fname,
     lname,
-    i,
-    txtValue1,
-    txtValue2,
-    status,
-    txtValue3;
+    fullname,
+    finalArr = [],
+    tabledata = tablearray;
   input = document.getElementById("user-id");
-  filter = input.value.toUpperCase();
   table = document.getElementById("tboy");
-  rows = table.getElementsByTagName("tr");
-  status = false;
+  pageCount = document.getElementById("page-list");
+  filter = input.value.toUpperCase();
+  for (let i = 0; i < tabledata.length; i++) {
+    fname = tabledata[i].first_name;
+    lname = tabledata[i].last_name;
+    if (filter != null) {
+      fullname = fname + " " + lname;
 
-  for (i = 0; i < rows.length; i++) {
-    fname = rows[i].getElementsByTagName("td")[1];
-    lname = rows[i].getElementsByTagName("td")[2];
-
-    if (filter) {
-      txtValue1 = fname.textContent || fname.innerText;
-      txtValue2 = lname.textContent || lname.innerText;
-      txtValue3 = txtValue1 + " " + txtValue2;
-
-      if (txtValue1.toUpperCase().indexOf(filter) > -1) {
-        rows[i].style.display = "";
+      if (fname.toUpperCase() === filter) {
+        finalArr.push(tabledata[i]);
         status = true;
-      } else if (txtValue2.toUpperCase().indexOf(filter) > -1) {
-        rows[i].style.display = "";
+      } else if (lname.toUpperCase() === filter) {
+        finalArr.push(tabledata[i]);
         status = true;
-      } else if (txtValue3.toUpperCase().indexOf(filter) > -1) {
-        rows[i].style.display = "";
+      } else if (fullname.toUpperCase().indexOf(filter) > -1) {
+        finalArr.push(tabledata[i]);
         status = true;
       } else {
-        rows[i].style.display = "none";
+        continue;
       }
     } else {
       alert("Enter valid info");
       break;
     }
   }
-  //-----------if no data is found ---------------//
-  console.log(status);
-  if (!status) alert("No data available");
+  buildTable(finalArr);
+  pageCount.style.display = "none";
 }

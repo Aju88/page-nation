@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link href="style.css" rel="stylesheet" />
+    <link href="/css/all.css" rel="stylesheet"> 
+
 
   </head>
   <body>
@@ -13,19 +15,19 @@
     </header>
     <section class="search-box">
         
-            <input type="text" name="user-name" id="user-id" placeholder="Name">
-            <button onclick="searchTable()" id="search">Search</button>
-        <p><button onclick="sortTable()">Sort</button></p>
+            <input type="text" name="user-name" id="user-id" onkeyup="searchTable()" placeholder="Name">
+            <!-- <button onclick="searchTable()" id="search">Search</button> -->
+        <!-- <p><button onclick="sortTable()">Sort</button></p> -->
     </section>
 </div>
 <div class="container ">
     <!-- Table structure here -->
-    <table class="table table-dark" id="our-table">
+    <table class="table " id="our-table">
         <thead>
             <tr>
-                <th>Rank</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Rank  &nbsp; <i onclick="sortTable(0)" class="fas fa-long-arrow-alt-down sort"></i></th>
+                <th>First Name &nbsp; <i onclick="sortTable(1)"class="fas fa-long-arrow-alt-down sort"></i></th>
+                <th>Last Name &nbsp; <i onclick="sortTable(2)" class="fas fa-long-arrow-alt-down sort"></i></th>
             </tr>
         </thead>
         <tbody id="tboy">
@@ -34,7 +36,7 @@
     </table>
 </div>
 <div class="container page">
-  <div class="pagination">
+  <div class="pagination" id="page-list">
     <ul></ul>
   </div>
 </div>
